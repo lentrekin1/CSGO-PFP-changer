@@ -14,13 +14,14 @@ import threading
 import winsound
 
 util = 'util/'
+avatar_change = '/edit/avatar'
 with open(util + 'info.json', 'r') as f:
     info = json.loads(f.read())
     steam_email = info['steam_email']
     email_pass = base64.b64decode(info['email_pass']).decode()
     steam_user = info['steam_user']
     steam_pass = base64.b64decode(info['steam_pass']).decode()
-    steam_link = info['steam_link']
+    steam_link = info['steam_link'] + avatar_change
 imap_server = "imap.gmail.com"
 upload_url = "https://steamcommunity.com/actions/FileUploader"
 stop_key = "="
