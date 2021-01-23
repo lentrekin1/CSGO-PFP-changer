@@ -17,9 +17,9 @@ It works by constantly looking for button press or looking for csgo kill bar whe
   
 It detects kills most of the time, but false positives (ie. when you get killed)
 
-It pulls random image file from images/
+It pulls a random image file from images/
 
-**IMPORTANT** It plays a sound (alert.wav) every time it switches PFP's so you know when it happens
+It plays a sound (alert.wav) every time it switches PFP's so you know when it happens
 
 ## todo
 -(maybe) change so rather than pulling random image from dir, it gets random image from website
