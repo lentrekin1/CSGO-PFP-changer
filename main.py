@@ -11,6 +11,7 @@ import random
 import glob
 import pyautogui
 import threading
+import winsound
 
 with open('info.json', 'r') as f:
     info = json.loads(f.read())
@@ -65,9 +66,7 @@ def get_data(r, file):
     return data
 
 def trigger():
-    if keyboard.is_pressed(trigger_key):
-        return True
-    elif pyautogui.locateOnScreen('trigger.png', confidence=0.5):#, region=(1920-500, 0, 500, 500)):
+    if pyautogui.locateOnScreen('trigger.png', confidence=0.5, region=(1920-500, 0, 500, 500)):
         return True
     else:
         return False
@@ -75,6 +74,7 @@ def trigger():
 def watcher():
     global stop, switch
     while not stop:
+        time.sleep(0.3)
         if keyboard.is_pressed(stop_key):
             print('Exiting...')
             stop = True
@@ -107,17 +107,18 @@ def main():
     form = sess.post(steam_link)
     watch = threading.Thread(target=watcher, args=())
     watch.start()
-    print(f'Logged into steam, watching for kills (press "{stop_key}" to stop)')
-    print(f'Press {trigger_key} to switch PFP at any time')
+    print(f'Logged into steam, watching for kills (hold "{stop_key}" to stop)')
+    print(f'Hold {trigger_key} to switch PFP at any time')
     while not stop:
         if trigger() or switch:
+            winsound.PlaySound('alert.wav', winsound.SND_FILENAME)
             print('Changing PFP...')
             file = random.choice(glob.glob('images/*'))
             data = get_data(form, file)
             r = sess.post(upload_url, files=data)
             switch = False
             print('PFP changed to ' + str(file))
-            time.sleep(5)
+            time.sleep(3)
         time.sleep(1)
 
 if __name__ == '__main__':
