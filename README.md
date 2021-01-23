@@ -1,4 +1,4 @@
-# steampfpchanger
+# CSGO-PFP-changer
 This changes your steam pfp on csgo kill or button press (default "]") (spooky)
 
 ## How to use
