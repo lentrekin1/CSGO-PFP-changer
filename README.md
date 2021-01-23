@@ -1,5 +1,5 @@
 # steampfpchanger
-This change steam pfp on csgo kill or button press (default "]") (spooky)
+This changes your steam pfp on csgo kill or button press (default "]") (spooky)
 
 ## How to use
 *add setup steps*
