@@ -13,7 +13,8 @@ import pyautogui
 import threading
 import winsound
 
-with open('info.json', 'r') as f:
+util = 'util/'
+with open(util + 'info.json', 'r') as f:
     info = json.loads(f.read())
     steam_email = info['steam_email']
     email_pass = base64.b64decode(info['email_pass']).decode()
@@ -66,7 +67,7 @@ def get_data(r, file):
     return data
 
 def trigger():
-    if pyautogui.locateOnScreen('trigger.png', confidence=0.5, region=(1920-500, 0, 500, 500)):
+    if pyautogui.locateOnScreen(util + 'trigger.png', confidence=0.5, region=(1920-500, 0, 500, 500)):
         return True
     else:
         return False
@@ -111,7 +112,7 @@ def main():
     print(f'Hold {trigger_key} to switch PFP at any time')
     while not stop:
         if trigger() or switch:
-            winsound.PlaySound('alert.wav', winsound.SND_FILENAME)
+            winsound.PlaySound(util + 'alert.wav', winsound.SND_FILENAME)
             print('Changing PFP...')
             file = random.choice(glob.glob('images/*'))
             data = get_data(form, file)
